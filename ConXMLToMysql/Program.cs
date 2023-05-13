@@ -11,7 +11,7 @@ namespace ConXMLToMysql
         {
             var cards = ParsingXml.Program.start();
             string queryCreateTable =
-                "CREATE TABLE IF NOT EXISTS cards (CARDCODE bigint PRIMARY KEY,STARTDATE TIMESTAMP,FINISHDATE text,LASTNAME text,FIRSTNAME text,SURNAME text,FULLNAME text,GENDERID text,BIRTHDAY text,PHONEHOME text,PHONEMOBIL text,EMAIL text,CITY text,STREET text,HOUSE text,APARTMENT  text,ALTADDRESS text,CARDTYPE text,OWNERGUID text,CARDPER text,TURNOVER text); ";
+                "CREATE TABLE IF NOT EXISTS cards (CARDCODE bigint PRIMARY KEY,STARTDATE TIMESTAMP ,FINISHDATE TIMESTAMP,LASTNAME text,FIRSTNAME text,SURNAME text,FULLNAME text,GENDERID int,BIRTHDAY TIMESTAMP,PHONEHOME text,PHONEMOBIL text,EMAIL text,CITY text,STREET text,HOUSE text,APARTMENT  text,ALTADDRESS text,CARDTYPE text,OWNERGUID text,CARDPER int,TURNOVER FLOAT); ";
             string myConnectionString = "server=127.0.0.1;uid=root;" +
                                         "pwd=123456;database=testdb";
             var dbCon = Connect.Instance();
@@ -35,22 +35,14 @@ namespace ConXMLToMysql
                         if (dbCon.IsConnect())
                         {
                             string Query = "";
-                            if (card.Value.STARTDATE.Length<=6)
-                            {
-                                Query =
-                                    string.Format(
-                                        "insert into cards(CARDCODE ,FINISHDATE ,LASTNAME ,FIRSTNAME ,SURNAME ,FULLNAME ,GENDERID ,BIRTHDAY ,PHONEHOME ,PHONEMOBIL ,EMAIL ,CITY ,STREET ,HOUSE ,APARTMENT  ,ALTADDRESS ,CARDTYPE ,OWNERGUID ,CARDPER ,TURNOVER ) values('{0}','{1}','{2}','{3}' ,'{4}' ,'{5}' ,'{6}' ,'{7}' ,'{8}' ,'{9}' ,'{10}' ,'{11}' ,'{12}' ,'{13}' ,'{14}' ,'{15}' ,'{16}'  ,'{17}' ,'{18}' ,'{19}'  );",
-                                        card.Value.CARDCODE,  card.Value.FINISHDATE,
-                                        card.Value.LASTNAME, card.Value.FIRSTNAME, card.Value.SURNAME,
-                                        card.Value.FULLNAME,
-                                        card.Value.GENDERID, card.Value.BIRTHDAY, card.Value.PHONEHOME,
-                                        card.Value.PHONEMOBIL,
-                                        card.Value.EMAIL, card.Value.CITY, card.Value.STREET, card.Value.HOUSE,
-                                        card.Value.APARTMENT, card.Value.ALTADDRESS, card.Value.CARDTYPE,
-                                        card.Value.OWNERGUID,
-                                        card.Value.CARDPER, card.Value.TURNOVER);
-                            }
-                            else
+                            if (card.Value.STARTDATE.Length < 8)
+                                card.Value.STARTDATE = "1970-02-02";
+                            if (card.Value.FINISHDATE.Length < 8)
+                                card.Value.FINISHDATE = "1970-02-02";
+                            if(card.Value.BIRTHDAY.Length<8)
+                                card.Value.BIRTHDAY = "1970-02-02";
+                            
+                            if(card.Value.STARTDATE.Length>=6&&card.Value.FINISHDATE.Length>=6)
                             {
                                 Query =
                                     string.Format(
@@ -81,10 +73,10 @@ namespace ConXMLToMysql
             // {
             //     Console.WriteLine(ParsingXml.Program.mapCard.Values.ToString());
             // }
-            dbCon.Close();
+            // dbCon.Close();
         }
 
-        static bool checkExistCard(string idCard)
+        static bool checkExistCard(string idCard) //  Производится проверка на наличие запись в базе. Если есть возвращается  true.  Если нет или ошибка возвращается false
         {
             var dbCon = Connect.Instance();
             dbCon.Server = "127.0.0.1";

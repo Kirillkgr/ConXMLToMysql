@@ -14,17 +14,16 @@ namespace ConXMLToMysql.ConectDB
         public MySqlConnection Connection { get; set; }
 
         private static Connect _instance = null;
+
         public static Connect Instance()
         {
             if (_instance == null)
                 _instance = new Connect();
             return _instance;
         }
-        
+
         public bool IsConnect()
         {
-            
-         
             if (Connection == null)
             {
                 if (string.IsNullOrEmpty(DatabaseName.ToString()))
@@ -40,8 +39,11 @@ namespace ConXMLToMysql.ConectDB
 
         public void Close()
         {
-            Connection.Close();
-            Connection = null;
+            if (Connect.Instance().IsConnect())
+            {
+                Connection.Close();
+                Connection = null;
+            }
         }
     }
 }
