@@ -1,5 +1,3 @@
-using System;
-using System.Data.Common;
 using MySql.Data.MySqlClient;
 
 namespace ConXMLToMysql.ConectDB
@@ -11,25 +9,22 @@ namespace ConXMLToMysql.ConectDB
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public MySqlConnection Connection { get; set; }
+        public MySqlConnection Connection { get; private set; }
 
-        private static Connect _instance = null;
+        private static Connect _instance;
 
         public static Connect Instance()
         {
-            if (_instance == null)
-                _instance = new Connect();
-            return _instance;
+            return _instance ?? (_instance = new Connect());
         }
 
         public bool IsConnect()
         {
             if (Connection == null)
             {
-                if (string.IsNullOrEmpty(DatabaseName.ToString()))
+                if (string.IsNullOrEmpty(DatabaseName))
                     return false;
-                string construing = string.Format("Server={0}; database={1}; uid={2}; pwd={3}", Server,
-                    DatabaseName, UserName, Password);
+                var construing = $"Server={Server}; database={DatabaseName}; uid={UserName}; pwd={Password}";
                 Connection = new MySqlConnection(construing);
                 Connection.Open();
             }
@@ -39,11 +34,9 @@ namespace ConXMLToMysql.ConectDB
 
         public void Close()
         {
-            if (Connect.Instance().IsConnect())
-            {
-                Connection.Close();
-                Connection = null;
-            }
+            if (!Connect.Instance().IsConnect()) return;
+            Connection.Close();
+            Connection = null;
         }
     }
 }
