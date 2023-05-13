@@ -1,19 +1,18 @@
-
 using System;
-using System.Text;
 using System.Xml;
 using Google.Protobuf.Collections;
-using Lombok.NET;
-namespace ParsingXml
+
+namespace ConXMLToMysql.ConectXML
 {
     public class ParseClients
     {
 
         public static MapField<long, Client>  MapField = new MapField<long, Client>();
 
-        public static MapField<long, Client> start()
+        public static MapField<long, Client> start(string path)
         {
-            XmlReader xmlReader = XmlReader.Create("/home/rill/Documents/Clients.xml");
+            // XmlReader xmlReader = XmlReader.Create("/home/rill/Documents/Clients.xml");
+            XmlReader xmlReader = XmlReader.Create(path);
             
             while (xmlReader.Read())
             {

@@ -1,4 +1,5 @@
 using System;
+using ConXMLToMysql.ConectXML;
 using MySql.Data.MySqlClient;
 
 namespace ConXMLToMysql.ConectDB
@@ -12,9 +13,9 @@ namespace ConXMLToMysql.ConectDB
 
         private static string[] _dataToConnect;
 
-        public bool StartParseClientToDb()
+        public bool StartParseClientToDb(string pathToFile)
         {
-            var clients = ParsingXml.ParseClients.start();
+            var clients = ParseClients.start(pathToFile);
             string queryCreateTable =
                 "CREATE TABLE IF NOT EXISTS clients (CARDCODE bigint PRIMARY KEY,STARTDATE text ,FINISHDATE text," +
                 "LASTNAME text,FIRSTNAME text,SURNAME text,GENDER text,BIRTHDAY text,PHONEHOME text,PHONEMOBIL text,EMAIL text," +

@@ -10,10 +10,10 @@ namespace ConXMLToMysql.ConectDB
         }
 
         private static string[] _dataToConnect;
-      public  bool StartParseCardToDb()
+      public  bool StartParseCardToDb(string path)
         {
             
-            var cards = ParsingXml.Program.start();
+            var cards = ConectXML.Program.Start(path);
             var dbCon = Connect.Instance();
             dbCon.Server = _dataToConnect[0];
             dbCon.DatabaseName = _dataToConnect[1];

@@ -1,24 +1,20 @@
 ﻿using System;
 using ConXMLToMysql.ConectDB;
-using Google.Protobuf.Collections;
-using MySql.Data.MySqlClient;
-
 namespace ConXMLToMysql
 {
-    internal class Program
+    internal abstract class Program
     {
         public static void Main(string[] args)
         {
-            string[] DBCONNECT = { "127.0.0.1", "testdb", "root", "123456;" };
-            // dbCon.Server = "127.0.0.1";
-            // dbCon.DatabaseName = "testdb";
-            // dbCon.UserName = "root";
-            // dbCon.Password = "123456;";
+            string[] connect = { "127.0.0.1", "testdb", "root", "123456;" };
+            const string pathCardsFile = ("/home/rill/Documents/Cards_20211005080948.xml");
+            const string pathClientsFile = ("/home/rill/Documents/Clients.xml");
+            
 
-            // Console.WriteLine(new RecordingCard(DBCONNECT).StartParseCardToDb() == true
-            //     ? "Card success write to DB"
-            //     : "Card error write to DB");
-            Console.WriteLine(new RecordingClient(DBCONNECT).StartParseClientToDb() == true
+            Console.WriteLine(new RecordingCard(connect).StartParseCardToDb(pathCardsFile)
+                ? "Card success write to DB"
+                : "Card error write to DB");
+            Console.WriteLine(new RecordingClient(connect).StartParseClientToDb(pathClientsFile)
                 ? "Clients success write to DB"
                 : "Clients error write to DB");
         }

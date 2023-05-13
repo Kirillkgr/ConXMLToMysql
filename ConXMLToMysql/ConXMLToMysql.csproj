@@ -131,7 +131,7 @@
         <Compile Include="ConectDB\RecordingCard.cs" />
         <Compile Include="ConectDB\RecordingClient.cs" />
         <Compile Include="ConectXML\ParseClients.cs" />
-        <Compile Include="ConectXML\ParsingXml.cs" />
+        <Compile Include="ConectXML\ParsingCards.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
