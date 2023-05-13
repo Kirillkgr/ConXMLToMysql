@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Clients>
+<Client
+CARDCODE="12345667890"
+STARTDATE="2018-07-19"
+FINISHDATE=""
+LASTNAME="Иванов "
+FIRSTNAME="Виталий"
+SURNAME="Петрович"
+GENDER="M"
+BIRTHDAY="1980-01-01"
+PHONEHOME=""
+PHONEMOBIL="+7999-554-44-66"
+EMAIL="vv@robotx.ru"
+CITY="Калининград г"
+STREET="Московский пр-кт"
+HOUSE="40"
+APARTMENT="2"
+/>
+<Client CARDCODE="12345667891" STARTDATE="2018-07-19" FINISHDATE="" LASTNAME="Kirill " FIRSTNAME="irilov" SURNAME="Kirilovthc" GENDER="M" BIRTHDAY="1991-02-22" PHONEHOME="112" PHONEMOBIL="911" EMAIL="Sobaka@mail_dot.com" CITY="Kaliningradishie" STREET="Московский пр-кт" HOUSE="40" APARTMENT="2"/>
+</Clients>
