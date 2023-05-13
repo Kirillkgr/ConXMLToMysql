@@ -15,13 +15,12 @@ namespace ConXMLToMysql
             // dbCon.UserName = "root";
             // dbCon.Password = "123456;";
 
-            Console.WriteLine(new RecordingCard(DBCONNECT).StartParseCardToDb() == true
-                ? "Card success write to DB"
-                : "Card error write to DB");
-            //     Console.WriteLine(new RecordingClient().startParseClientToDB() == true
-            //         ? "Clients success write to DB"
-            //         : "Clients error write to DB");
-            // }
+            // Console.WriteLine(new RecordingCard(DBCONNECT).StartParseCardToDb() == true
+            //     ? "Card success write to DB"
+            //     : "Card error write to DB");
+            Console.WriteLine(new RecordingClient(DBCONNECT).StartParseClientToDb() == true
+                ? "Clients success write to DB"
+                : "Clients error write to DB");
         }
     }
 }
