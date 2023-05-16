@@ -17,35 +17,16 @@ namespace ConXMLToMysql
             // var pathClientsFile = ("/home/rill/Documents/Clients.xml");
             for (int i = 0; i < args.Length; i++)
             {
-                if (args[i] == "-card")
+                switch (args[i])
                 {
-                    pathCardsFile = args[i - 1];
+                    case "-card":    pathCardsFile   = args[i - 1]; break;
+                    case "-client":  pathClientsFile = args[i - 1]; break;
+                    case "-server":  server          = args[i - 1]; break;
+                    case "-database":database        = args[i - 1]; break;
+                    case "-pass":    pass            = args[i - 1]; break;
+                    case "-username":username        = args[i - 1]; break;
                 }
-
-                if (args[i] == "-client")
-                {
-                    pathClientsFile = args[i - 1];
-                }
-
-                if (args[i] == "-server")
-                {
-                    server = args[i - 1];
-                }
-
-                if (args[i] == "-database")
-                {
-                    database = args[i - 1];
-                }
-
-                if (args[i] == "-pass")
-                {
-                    pass = args[i - 1];
-                }
-
-                if (args[i] == "-username")
-                {
-                    username = args[i - 1];
-                }
+                
             }
 
             // /home/rill/Documents/Clients.xml -client /home/rill/Documents/Cards_20211005080948.xml -card 127.0.0.1 -server  testdb -database root -username 123456 -pass
