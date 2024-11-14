@@ -15,12 +15,7 @@ namespace ConXMLToMysql
             var database = parsArg.Database;
             var username = parsArg.Username;
             var pass = parsArg.Pass;
-            // var pathCardsFile = ("/home/rill/Documents/Cards_20211005080948.xml");
-            // var pathClientsFile = ("/home/rill/Documents/Clients.xml");
-
-            // /home/rill/Documents/Clients.xml -client /home/rill/Documents/Cards_20211005080948.xml -card 127.0.0.1 -server  testdb -database root -username 123456 -pass
-            // {pathToClientFile} -client {pathToCardFile} -card {ipAddressToDB} -server  {nameDB} -database {userName} -username {pass} -pass
-
+         
             if (pathClientsFile.Length < 1)
                 pathClientsFile = "/home/rill/Documents/Clients.xml";
             if (pathCardsFile.Length < 1)
